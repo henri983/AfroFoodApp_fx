@@ -1,4 +1,4 @@
-package com.monrestaurant.model;
+package com.foodapp.model;
 
 public class Plat {
     private int id;

@@ -1,4 +1,4 @@
-package com.monrestaurant.model;
+package com.foodapp.model;
 
 public class User {
     private int id;
