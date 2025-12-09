@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox spacing="20" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.monrestaurant.controller.CartController">
+    
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
 
-</AnchorPane>
+    <Label text="Votre Panier" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="tableCart" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNom" text="Plat" prefWidth="200"/>
+            <TableColumn fx:id="colPrix" text="Prix Unitaire" prefWidth="100"/>
+            <TableColumn fx:id="colQte" text="Quantité" prefWidth="80"/>
+            <TableColumn fx:id="colTotal" text="Total" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="20" alignment="CENTER_RIGHT">
+        <Label fx:id="lblTotal" text="Total : 0.00 €" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <Button text="Valider la commande" onAction="#handleValider" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Retour au Menu" onAction="#goBackToMenu"/>
+    </HBox>
+</VBox>
