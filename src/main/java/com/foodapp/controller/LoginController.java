@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
@@ -26,44 +27,66 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        // 1. Validation basique
         if (email.isEmpty() || password.isEmpty()) {
             errorLabel.setText("Veuillez remplir tous les champs.");
             return;
         }
 
+        // 2. Appel à la base de données
         User user = userDAO.login(email, password);
 
         if (user != null) {
+            // 3. Vérification si le compte est approuvé
             if (!user.isApprouve()) {
                 errorLabel.setText("Compte en attente d'approbation.");
                 return;
             }
 
-            // 1. Sauvegarde en session
+            // 4. Mise en session
             UserSession.getInstance().login(user);
 
-            // 2. Redirection selon rôle
+            // 5. Redirection
             try {
-                String fxmlFile = user.getRole().equals("admin")
-                        ? "/fxml/AdminView.fxml"
-                        : "/fxml/MenuClientView.fxml";
+                String fxmlFile;
 
-                // Charger la nouvelle scène
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-                Parent root = loader.load();
+                // Si c'est un admin, on l'envoie vers l'admin dashboard
+                if ("admin".equalsIgnoreCase(user.getRole())) {
+                    fxmlFile = "/com/example/afrofoodapp/AdminPlatsView.fxml";
+                } else {
+                    // Sinon (client), on l'envoie vers le Menu
+                    fxmlFile = "/com/example/afrofoodapp/MenuClientView.fxml";
+                }
 
-                // Obtenir la fenêtre actuelle et changer la scène
+                // Chargement de la vue
+                Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+
+                // Changement de scène
                 Stage stage = (Stage) emailField.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
 
             } catch (IOException e) {
                 e.printStackTrace();
-                errorLabel.setText("Erreur de chargement de la vue.");
+                errorLabel.setText("Erreur : Fichier FXML introuvable (" + e.getMessage() + ")");
+                System.err.println("Vérifiez le chemin du fichier FXML dans src/main/resources !");
             }
 
         } else {
             errorLabel.setText("Email ou mot de passe incorrect.");
+        }
+    }
+
+    // --- Méthode pour aller vers l'inscription ---
+    @FXML
+    private void goToRegister() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/afrofoodapp/InscriptionView.fxml"));
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erreur : InscriptionView.fxml introuvable");
         }
     }
 }
