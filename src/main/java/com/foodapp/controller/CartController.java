@@ -1,9 +1,9 @@
 package com.foodapp.controller;
 
-import com.monrestaurant.dao.CommandeDAO;
-import com.monrestaurant.model.CartItem;
-import com.monrestaurant.model.Plat;
-import com.monrestaurant.utils.UserSession;
+import com.foodapp.dao.CommandeDAO;
+import com.foodapp.model.CartItem;
+import com.foodapp.model.Plat;
+import com.foodapp.utils.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

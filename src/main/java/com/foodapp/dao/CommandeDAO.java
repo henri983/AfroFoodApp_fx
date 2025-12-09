@@ -1,25 +1,29 @@
 package com.foodapp.dao;
 
-import com.foodapp.model.CartItem;
+import com.foodapp.model.Plat;
 import com.foodapp.model.User;
 import java.sql.*;
-import java.util.List;
+import java.util.Map;
 
 public class CommandeDAO {
 
-    // Traduction exacte de valider_commande.php avec Transaction
-    public boolean validerCommande(User user, List<CartItem> panier) {
-        if (panier.isEmpty()) return false;
+    // Méthode adaptée pour correspondre à l'appel du CartController
+    public boolean saveOrder(User user, Map<Plat, Integer> cart) {
+        if (cart.isEmpty()) return false;
 
         Connection conn = null;
         try {
-            conn = DatabaseConnection.getConnection();
+            // Correction 1 : Utilisation de DatabaseConnexion (avec 'x')
+            conn = DatabaseConnexion.getConnection();
             conn.setAutoCommit(false); // DÉBUT TRANSACTION
 
-            // 1. Calcul du total
-            double total = panier.stream().mapToDouble(CartItem::getTotalPrice).sum();
+            // Correction 2 : Calcul du total depuis la Map
+            double total = 0;
+            for (Map.Entry<Plat, Integer> entry : cart.entrySet()) {
+                total += entry.getKey().getPrix() * entry.getValue();
+            }
 
-            // 2. Insérer la commande principale
+            // 1. Insérer la commande principale
             String sqlCmd = "INSERT INTO commandes (user_id, date_commande, total) VALUES (?, NOW(), ?)";
             PreparedStatement stmtCmd = conn.prepareStatement(sqlCmd, Statement.RETURN_GENERATED_KEYS);
             stmtCmd.setInt(1, user.getId());
@@ -32,16 +36,20 @@ public class CommandeDAO {
                 commandeId = rs.getInt(1);
             }
 
-            // 3. Insérer les détails
+            // 2. Insérer les détails
             String sqlDetail = "INSERT INTO commande_details (commande_id, plat_id, quantite, prix) VALUES (?, ?, ?, ?)";
             PreparedStatement stmtDetail = conn.prepareStatement(sqlDetail);
 
-            for (CartItem item : panier) {
+            // Correction 3 : Boucle sur la Map (Clé = Plat, Valeur = Quantité)
+            for (Map.Entry<Plat, Integer> entry : cart.entrySet()) {
+                Plat plat = entry.getKey();
+                int quantite = entry.getValue();
+
                 stmtDetail.setInt(1, commandeId);
-                stmtDetail.setInt(2, item.getPlat().getId());
-                stmtDetail.setInt(3, item.getQuantity());
-                stmtDetail.setDouble(4, item.getPlat().getPrix());
-                stmtDetail.addBatch(); // Optimisation
+                stmtDetail.setInt(2, plat.getId());
+                stmtDetail.setInt(3, quantite);
+                stmtDetail.setDouble(4, plat.getPrix());
+                stmtDetail.addBatch();
             }
             stmtDetail.executeBatch();
 
@@ -53,7 +61,7 @@ public class CommandeDAO {
             try { if (conn != null) conn.rollback(); } catch (SQLException ex) { ex.printStackTrace(); }
             return false;
         } finally {
-            try { if (conn != null) conn.setAutoCommit(true); conn.close(); } catch (SQLException e) {}
+            try { if (conn != null) { conn.setAutoCommit(true); conn.close(); } } catch (SQLException e) {}
         }
     }
 }

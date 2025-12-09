@@ -1,8 +1,8 @@
 package com.foodapp.controller;
 
-import com.monrestaurant.dao.PlatDAO;
-import com.monrestaurant.model.Plat;
-import com.monrestaurant.utils.UserSession;
+import com.foodapp.dao.PlatDAO;
+import com.foodapp.model.Plat;
+import com.foodapp.utils.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;

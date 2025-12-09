@@ -14,7 +14,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="fb62765f-2a28-4f6a-bd6d-61db5e80e642">
+    <connection id="0a8a0a00-9bc2-48a3-9445-9adc5160e201">
       <console name="Connection" type="STANDARD" schema="food_app_db" session="Main" />
     </connection>
   </component>
@@ -27,7 +27,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection source-id="" id="fb62765f-2a28-4f6a-bd6d-61db5e80e642" active="true" signed="true">
+      <connection source-id="" id="0a8a0a00-9bc2-48a3-9445-9adc5160e201" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />

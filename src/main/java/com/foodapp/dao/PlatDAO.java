@@ -12,18 +12,22 @@ public class PlatDAO {
         ObservableList<Plat> list = FXCollections.observableArrayList();
         String sql = "SELECT * FROM plats ORDER BY pays, nom";
 
-        try (Connection conn = DatabaseConnection.getConnection();
+        // Correction du nom de la classe de connexion
+        try (Connection conn = DatabaseConnexion.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
+                // Assure-toi que ton constructeur Plat dans Plat.java accepte bien ces 7 arguments
+                // Si ta base de données n'a pas de colonne "region", enlève la ligne rs.getString("region")
                 list.add(new Plat(
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("description"),
                         rs.getDouble("prix"),
                         rs.getString("image"),
-                        rs.getString("pays")
+                        rs.getString("pays"),
+                        rs.getString("region")
                 ));
             }
         } catch (SQLException e) {
@@ -32,17 +36,22 @@ public class PlatDAO {
         return list;
     }
 
-    // Ajouter un plat
-    public void addPlat(String nom, String desc, double prix, String image, String pays) {
-        String sql = "INSERT INTO plats (nom, description, prix, image, pays) VALUES (?,?,?,?,?)";
-        try (Connection conn = DatabaseConnection.getConnection();
+    // Ajouter un plat (Correction : prend un objet Plat en paramètre)
+    public void addPlat(Plat plat) {
+        String sql = "INSERT INTO plats (nom, description, prix, image, pays, region) VALUES (?,?,?,?,?,?)";
+
+        try (Connection conn = DatabaseConnexion.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, nom);
-            stmt.setString(2, desc);
-            stmt.setDouble(3, prix);
-            stmt.setString(4, image);
-            stmt.setString(5, pays);
+
+            stmt.setString(1, plat.getNom());
+            stmt.setString(2, plat.getDescription());
+            stmt.setDouble(3, plat.getPrix());
+            stmt.setString(4, plat.getImagePath());
+            stmt.setString(5, plat.getPays());
+            stmt.setString(6, plat.getRegion());
+
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,10 +60,13 @@ public class PlatDAO {
     // Supprimer un plat
     public void deletePlat(int id) {
         String sql = "DELETE FROM plats WHERE id = ?";
-        try (Connection conn = DatabaseConnection.getConnection();
+
+        try (Connection conn = DatabaseConnexion.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AdminPlatsController {
     // Le Tableau
     @FXML private TableView<Plat> tablePlats;
