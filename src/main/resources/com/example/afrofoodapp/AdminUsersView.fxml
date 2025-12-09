@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.foodapp.controller.AdminUsersController"
+      spacing="20" style="-fx-padding: 30;" prefHeight="500.0" prefWidth="800.0">
 
-</AnchorPane>
+    <HBox alignment="CENTER_LEFT">
+        <Button text="← Retour Plats" onAction="#goBackToPlats"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Gestion des Utilisateurs" textFill="#2c3e50">
+            <font><Font name="System Bold" size="22.0"/></font>
+        </Label>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+
+    <TableView fx:id="tableUsers" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colUsername" text="Pseudo" prefWidth="120"/>
+            <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
+            <TableColumn fx:id="colRole" text="Rôle" prefWidth="100"/>
+            <TableColumn fx:id="colStatus" text="Statut" prefWidth="100"/>
+        </columns>
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+    </TableView>
+
+    <HBox spacing="20" alignment="CENTER_RIGHT">
+        <Button text="Approuver le compte" onAction="#handleApprove" 
+                style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Supprimer l'utilisateur" onAction="#handleDelete" 
+                style="-fx-background-color: #c0392b; -fx-text-fill: white;"/>
+    </HBox>
+</VBox>
