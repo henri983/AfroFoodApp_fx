@@ -11,7 +11,6 @@ public class UserDAO {
     public User login(String email, String password) {
         String sql = "SELECT * FROM users WHERE email = ?";
 
-        // Attention : Vérifie si ta classe s'appelle DatabaseConnection ou DatabaseConnexion
         try (Connection conn = DatabaseConnexion.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -19,11 +18,10 @@ public class UserDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                // Ici on vérifie le mot de passe (en clair pour l'instant)
+                // NOTE : Pour l'instant, on ignore la vérification du mot de passe
+                // pour permettre la connexion sur les comptes importés de PHP.
                 // String dbPass = rs.getString("password_hash");
-                // if (!password.equals(dbPass)) return null;
 
-                // On retourne un objet User complet (avec les 9 champs)
                 return new User(
                         rs.getInt("id"),
                         rs.getString("username"),
@@ -42,8 +40,9 @@ public class UserDAO {
         return null;
     }
 
-    // --- 2. INSCRIPTION (Register) - C'était ton erreur ---
+    // --- 2. INSCRIPTION (Register) ---
     public boolean register(String username, String email, String password, String role) {
+        // On insère avec approuve = 0 (en attente) par défaut
         String sql = "INSERT INTO users (username, email, password_hash, role, approuve, created_at) VALUES (?, ?, ?, ?, 0, NOW())";
 
         try (Connection conn = DatabaseConnexion.getConnection();
@@ -51,7 +50,7 @@ public class UserDAO {
 
             stmt.setString(1, username);
             stmt.setString(2, email);
-            stmt.setString(3, password);
+            stmt.setString(3, password); // Stocké en clair pour l'instant (faute de librairie BCrypt)
             stmt.setString(4, role);
 
             int result = stmt.executeUpdate();
@@ -115,11 +114,14 @@ public class UserDAO {
         }
     }
 
-    // --- 6. PROFIL : Mettre à jour ---
+    // --- 6. PROFIL : Mettre à jour (AVEC PHOTO) ---
     public void updateProfile(User user, String newPassword) {
-        String sql = "UPDATE users SET prenom=?, adresse=?, telephone=? WHERE id=?";
+        // MODIFICATION : Ajout de la colonne 'photo' dans la requête
+        String sql = "UPDATE users SET prenom=?, adresse=?, telephone=?, photo=? WHERE id=?";
+
+        // Si l'utilisateur change aussi son mot de passe
         if (newPassword != null && !newPassword.isEmpty()) {
-            sql = "UPDATE users SET prenom=?, adresse=?, telephone=?, password_hash=? WHERE id=?";
+            sql = "UPDATE users SET prenom=?, adresse=?, telephone=?, photo=?, password_hash=? WHERE id=?";
         }
 
         try (Connection conn = DatabaseConnexion.getConnection();
@@ -128,14 +130,18 @@ public class UserDAO {
             stmt.setString(1, user.getPrenom());
             stmt.setString(2, user.getAdresse());
             stmt.setString(3, user.getTelephone());
+            stmt.setString(4, user.getPhoto()); // Sauvegarde du nom de fichier image
 
             if (newPassword != null && !newPassword.isEmpty()) {
-                stmt.setString(4, newPassword);
-                stmt.setInt(5, user.getId());
+                stmt.setString(5, newPassword);
+                stmt.setInt(6, user.getId());
             } else {
-                stmt.setInt(4, user.getId());
+                stmt.setInt(5, user.getId());
             }
+
             stmt.executeUpdate();
+            System.out.println("Profil mis à jour avec succès !");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

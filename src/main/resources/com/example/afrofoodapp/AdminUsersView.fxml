@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" 
+<VBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.foodapp.controller.AdminUsersController"
       spacing="20" style="-fx-padding: 30;" prefHeight="500.0" prefWidth="800.0">
 
@@ -28,9 +28,9 @@
     </TableView>
 
     <HBox spacing="20" alignment="CENTER_RIGHT">
-        <Button text="Approuver le compte" onAction="#handleApprove" 
+        <Button text="Approuver le compte" onAction="#handleApprove"
                 style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
-        <Button text="Supprimer l'utilisateur" onAction="#handleDelete" 
+        <Button text="Supprimer l'utilisateur" onAction="#handleDelete"
                 style="-fx-background-color: #c0392b; -fx-text-fill: white;"/>
     </HBox>
 </VBox>

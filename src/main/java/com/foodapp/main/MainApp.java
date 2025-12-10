@@ -23,7 +23,7 @@ public class MainApp extends Application {
             Scene scene = new Scene(root, 900, 600);
 
             // 3. Configuration de la fenêtre
-            primaryStage.setTitle("Saveurs d'Afrique - Accueil"); // Titre changé
+            primaryStage.setTitle("Afro Food App FX - Accueil"); // Titre changé
             primaryStage.setScene(scene);
 
             // On autorise le redimensionnement pour l'accueil, ou non, selon ton choix

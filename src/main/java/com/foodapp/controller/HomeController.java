@@ -15,32 +15,31 @@ public class HomeController {
     // Méthode générique pour changer de page
     private void navigate(ActionEvent event, String fxmlFile) {
         try {
+            // Attention : Assure-toi que le chemin commence bien par /com/example/...
             Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Impossible de charger le fichier : " + fxmlFile);
+            System.err.println("ERREUR : Impossible de charger le fichier : " + fxmlFile);
         }
     }
 
     @FXML
     private void handleConnexion(ActionEvent event) {
-        // Redirige vers la page de login
         navigate(event, "/com/example/afrofoodapp/LoginView.fxml");
     }
 
     @FXML
     private void handleInscription(ActionEvent event) {
-        // Redirige vers la page d'inscription
         navigate(event, "/com/example/afrofoodapp/InscriptionView.fxml");
     }
 
     @FXML
     private void handleVoirMenu(ActionEvent event) {
-        // Pour voir le menu, on demande généralement de se connecter d'abord
-        // Ou tu peux diriger vers le menu directement si tu as géré le mode "invité"
-        navigate(event, "/com/example/afrofoodapp/LoginView.fxml");
+        // --- MODIFICATION ICI ---
+        // On dirige l'utilisateur vers la page de choix des régions (les 5 cartes)
+        navigate(event, "/com/example/afrofoodapp/RegionSelectionView.fxml");
     }
 }

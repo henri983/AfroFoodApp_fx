@@ -75,7 +75,7 @@ public class CartController {
     @FXML
     private void goBackToMenu() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/MenuClientView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/ClientMenuView.fxml"));
             Stage stage = (Stage) tableCart.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) { e.printStackTrace(); }

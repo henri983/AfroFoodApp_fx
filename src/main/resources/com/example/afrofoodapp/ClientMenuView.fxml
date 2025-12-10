@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="com.foodapp.controller.ClientMenuController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane prefHeight="338.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodapp.controller.ClientMenuController">
     <top>
-        <HBox spacing="20" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+        <HBox spacing="20" style="-fx-background-color: #2c3e50; -fx-padding: 15;" alignment="CENTER_LEFT">
+            <Button text="← Retour" onAction="#goBack" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-cursor: hand;"/>
+
             <Label text="Mon Restaurant" textFill="white" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="btnPanier" text="Panier (0)" onAction="#goToPanier"/>
         </HBox>
     </top>
     <center>
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
+        <ScrollPane fitToWidth="true" prefHeight="205.0" prefWidth="287.0" style="-fx-background-color: transparent;">
             <content>
                 <GridPane fx:id="productGrid" hgap="20" vgap="20">
-                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
                 </GridPane>
             </content>
         </ScrollPane>

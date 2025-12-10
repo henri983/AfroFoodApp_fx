@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodapp.controller.RegionSelectionController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button onAction="#goBack" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-cursor: hand;" text="← Accueil" />
+
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Nos Spécialités par Région" textFill="white" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnPanier" onAction="#goToPanier" text="Panier (0)" />
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+            <content>
+                <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #f4f4f4; -fx-padding: 40;">
+                    <children>
+
+                        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <padding><Insets bottom="20.0" left="0" right="0" top="0" /></padding>
+                            <children>
+                                <ImageView fitHeight="180.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="false">
+                                    <image><Image url="@images/images_drp/Cameroun.png" /></image>
+                                    <clip><Rectangle arcHeight="10" arcWidth="10" height="180" width="280" /></clip>
+                                </ImageView>
+                                <Label text="Spécialités Camerounaises" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                                <Text fill="#7f8c8d" text="Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique camerounaise." textAlignment="CENTER" wrappingWidth="240.0">
+                                    <font><Font size="14.0" /></font>
+                                </Text>
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Button maxWidth="240.0" onAction="#showCameroun" prefHeight="40.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="Voir les plats" textFill="#2c3e50" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <padding><Insets bottom="20.0" left="0" right="0" top="0" /></padding>
+                            <children>
+                                <ImageView fitHeight="180.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="false">
+                                    <image><Image url="@images/images_drp/Centrafrique.png" /></image>
+                                    <clip><Rectangle arcHeight="10" arcWidth="10" height="180" width="280" /></clip>
+                                </ImageView>
+                                <Label text="Spécialités Centrafricaines" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                                <Text fill="#7f8c8d" text="Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique centrafricaine." textAlignment="CENTER" wrappingWidth="240.0">
+                                    <font><Font size="14.0" /></font>
+                                </Text>
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Button maxWidth="240.0" onAction="#showCentrafrique" prefHeight="40.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="Voir les plats" textFill="#2c3e50" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <padding><Insets bottom="20.0" left="0" right="0" top="0" /></padding>
+                            <children>
+                                <ImageView fitHeight="180.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="false">
+                                    <image><Image url="@images/images_drp/Mali.png" /></image>
+                                    <clip><Rectangle arcHeight="10" arcWidth="10" height="180" width="280" /></clip>
+                                </ImageView>
+                                <Label text="Spécialités Maliennes" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                                <Text fill="#7f8c8d" text="Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique malienne." textAlignment="CENTER" wrappingWidth="240.0">
+                                    <font><Font size="14.0" /></font>
+                                </Text>
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Button maxWidth="240.0" onAction="#showMali" prefHeight="40.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="Voir les plats" textFill="#2c3e50" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <padding><Insets bottom="20.0" left="0" right="0" top="0" /></padding>
+                            <children>
+                                <ImageView fitHeight="180.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="false">
+                                    <image><Image url="@images/images_drp/Cote_d_Ivoire.png" /></image>
+                                    <clip><Rectangle arcHeight="10" arcWidth="10" height="180" width="280" /></clip>
+                                </ImageView>
+                                <Label text="Spécialités Ivoiriennes" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                                <Text fill="#7f8c8d" text="Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique ivoirienne." textAlignment="CENTER" wrappingWidth="240.0">
+                                    <font><Font size="14.0" /></font>
+                                </Text>
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Button maxWidth="240.0" onAction="#showCoteIvoire" prefHeight="40.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="Voir les plats" textFill="#2c3e50" />
+                            </children>
+                        </VBox>
+
+                        <VBox alignment="TOP_CENTER" maxWidth="300.0" minWidth="280.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <padding><Insets bottom="20.0" left="0" right="0" top="0" /></padding>
+                            <children>
+                                <ImageView fitHeight="180.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="false">
+                                    <image><Image url="@images/images_drp/Senegal.png" /></image>
+                                    <clip><Rectangle arcHeight="10" arcWidth="10" height="180" width="280" /></clip>
+                                </ImageView>
+                                <Label text="Spécialités Sénégalaises" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                                <Text fill="#7f8c8d" text="Chaque jour nous préparons les produits du marché pour vous offrir une cuisine authentique sénégalaise." textAlignment="CENTER" wrappingWidth="240.0">
+                                    <font><Font size="14.0" /></font>
+                                </Text>
+                                <Region VBox.vgrow="ALWAYS" />
+                                <Button maxWidth="240.0" onAction="#showSenegal" prefHeight="40.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" text="Voir les plats" textFill="#2c3e50" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

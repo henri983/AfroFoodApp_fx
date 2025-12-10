@@ -10,7 +10,7 @@
 
     <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="false">
         <image>
-            <Image url="@images/logos/logos1.jpeg" />
+            <Image url="@images/logos/logo1.jpeg" />
         </image>
         <opacity>0.8</opacity> </ImageView>
 
@@ -18,7 +18,7 @@
 
         <top>
             <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-padding: 20; -fx-background-color: rgba(0,0,0,0.5);">
-                <Label text="Saveurs d'Afrique" textFill="#f1c40f">
+                <Label text="Afro Food App" textFill="#f1c40f">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
