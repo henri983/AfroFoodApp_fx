@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #ecf0f1;" 
-      xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.foodapp.controller.InscriptionController">
+<VBox alignment="CENTER" spacing="15.0" style="-fx-background-color: #ecf0f1;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodapp.controller.InscriptionController">
 
     <padding>
-        <Insets bottom="40" left="40" right="40" top="40"/>
+        <Insets bottom="40" left="40" right="40" top="40" />
     </padding>
+   <ToolBar prefHeight="40.0" prefWidth="200.0">
+     <items>
+       <Button mnemonicParsing="false" onAction="#handleRetour" text="Retour" />
+     </items>
+   </ToolBar>
 
     <Label text="Créer un compte" textFill="#2c3e50">
         <font>
@@ -25,18 +33,16 @@
         </font>
     </Label>
 
-    <TextField fx:id="txtUsername" promptText="Nom d'utilisateur" maxWidth="300" prefHeight="35"/>
-    
-    <TextField fx:id="txtEmail" promptText="Adresse Email" maxWidth="300" prefHeight="35"/>
-    
-    <PasswordField fx:id="txtPassword" promptText="Mot de passe" maxWidth="300" prefHeight="35"/>
+    <TextField fx:id="txtUsername" maxWidth="300" prefHeight="35" promptText="Nom d'utilisateur" />
 
-    <Label fx:id="lblError" textFill="#e74c3c" wrapText="true"/>
+    <TextField fx:id="txtEmail" maxWidth="300" prefHeight="35" promptText="Adresse Email" />
 
-    <Button text="S'inscrire" onAction="#handleInscription" maxWidth="300" prefHeight="40"
-            style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;"/>
+    <PasswordField fx:id="txtPassword" maxWidth="300" prefHeight="35" promptText="Mot de passe" />
 
-    <Hyperlink text="Déjà un compte ? Se connecter" onAction="#goToLogin" 
-               style="-fx-text-fill: #2c3e50;"/>
+    <Label fx:id="lblError" textFill="#e74c3c" wrapText="true" />
+
+    <Button maxWidth="300" onAction="#handleInscription" prefHeight="40" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="S'inscrire" />
+
+    <Hyperlink onAction="#goToLogin" style="-fx-text-fill: #2c3e50;" text="Déjà un compte ? Se connecter" />
 
 </VBox>

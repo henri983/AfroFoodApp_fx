@@ -75,10 +75,16 @@ public class CartController {
     @FXML
     private void goBackToMenu() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/ClientMenuView.fxml"));
+            // CORRECTION DU CHEMIN ICI :
+            // Il faut utiliser le chemin complet vers votre package
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/afrofoodapp/ClientMenuView.fxml"));
+
             Stage stage = (Stage) tableCart.getScene().getWindow();
             stage.setScene(new Scene(root));
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("ERREUR : Impossible de trouver /com/example/afrofoodapp/ClientMenuView.fxml");
+        }
     }
 
     private void showAlert(String title, String content) {

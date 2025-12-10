@@ -80,6 +80,28 @@ public class LoginController {
             errorLabel.setText("Email ou mot de passe incorrect.");
         }
     }
+    //bouton retour
+    @FXML
+    private void handleRetour(ActionEvent event) {
+        try {
+            // CHARGEMENT DE LA VUE ACCUEIL
+            // ⚠️ REMPLACE "HomeView.fxml" par le vrai nom de ton fichier d'accueil (ex: "hello-view.fxml" ou "MainView.fxml")
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/afrofoodapp/HomeView.fxml"));
+            Parent root = loader.load();
+
+            // RÉCUPÉRATION DE LA FENÊTRE ACTUELLE (STAGE)
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // CHANGEMENT DE LA SCÈNE
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erreur : Impossible de charger la vue Accueil.");
+        }
+    }
 
     /**
      * Gère la navigation vers la page d'inscription.
