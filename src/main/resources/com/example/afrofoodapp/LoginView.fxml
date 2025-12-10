@@ -24,7 +24,7 @@
     </Label>
 
     <TextField fx:id="emailField" maxWidth="300.0" promptText="Adresse Email" />
-    
+
     <PasswordField fx:id="passwordField" maxWidth="300.0" promptText="Mot de passe" />
 
     <Button maxWidth="300.0" onAction="#handleLogin" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-cursor: hand;" text="Se connecter">
@@ -35,5 +35,7 @@
 
     <Label fx:id="errorLabel" textFill="#e74c3c" />
 
-
+    <Hyperlink onAction="#goToInscription"
+               text="Pas encore de compte ? S'inscrire ici"
+               style="-fx-cursor: hand;" />
 </VBox>
