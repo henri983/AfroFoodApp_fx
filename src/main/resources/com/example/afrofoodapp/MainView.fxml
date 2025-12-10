@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.foodapp.controller.HomeController">
+
+    <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="false">
+        <image>
+            <Image url="@images/logos/logos1.jpeg" />
+        </image>
+        <opacity>0.8</opacity> </ImageView>
+
+    <BorderPane prefHeight="600.0" prefWidth="900.0">
+
+        <top>
+            <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-padding: 20; -fx-background-color: rgba(0,0,0,0.5);">
+                <Label text="Saveurs d'Afrique" textFill="#f1c40f">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+
+                <Region HBox.hgrow="ALWAYS" /> <Button onAction="#handleInscription" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 5;" text="Inscription" />
+                <Button onAction="#handleConnexion" style="-fx-background-color: #f1c40f; -fx-text-fill: black; -fx-background-radius: 5;" text="Connexion" />
+            </HBox>
+        </top>
+
+        <center>
+            <VBox alignment="CENTER" spacing="30.0">
+                <padding>
+                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                </padding>
+
+                <Label text="Bienvenue dans notre univers culinaire" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font name="System Bold" size="36.0" />
+                    </font>
+                    <style>-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);</style>
+                </Label>
+
+                <Label maxWidth="600" text="Chaque plat raconte une histoire du continent africain." textAlignment="CENTER" textFill="#ecf0f1" wrapText="true">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <style>-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 0);</style>
+                </Label>
+
+                <Button onAction="#handleVoirMenu" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 30; -fx-padding: 15 40; -fx-cursor: hand;" text="VOIR LE MENU">
+                    <style>-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 5);</style>
+                </Button>
+            </VBox>
+        </center>
+
+        <bottom>
+            <HBox alignment="CENTER" style="-fx-padding: 10; -fx-background-color: rgba(0,0,0,0.8);">
+                <Label text="© 2024 Saveurs d'Afrique. Tous droits réservés." textFill="#bdc3c7" />
+            </HBox>
+        </bottom>
+
+    </BorderPane>
+</StackPane>
