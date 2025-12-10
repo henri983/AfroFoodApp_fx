@@ -85,8 +85,8 @@ public class LoginController {
     private void handleRetour(ActionEvent event) {
         try {
             // CHARGEMENT DE LA VUE ACCUEIL
-            // ⚠️ REMPLACE "HomeView.fxml" par le vrai nom de ton fichier d'accueil (ex: "hello-view.fxml" ou "MainView.fxml")
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/afrofoodapp/HomeView.fxml"));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/afrofoodapp/MainView.fxml"));
             Parent root = loader.load();
 
             // RÉCUPÉRATION DE LA FENÊTRE ACTUELLE (STAGE)
